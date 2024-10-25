@@ -1,12 +1,8 @@
-import logo from "../../public/black white Thunder logo (1)-Photoroom.png"
+import logo from "../../public/logo.png";
 const Header = () => {
   return (
-    <div className="absolute px-8 py-2  z-10 w-full">
-      <img
-        src={logo}
-        alt="logo"
-        className="w-60"
-      />
+    <div className="absolute px-16 py-8  z-10 w-full max-w-[80rem]">
+      <img src={logo} alt="logo" className="w-60" />
     </div>
   );
 };
