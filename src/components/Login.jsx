@@ -29,13 +29,13 @@ const Login = () => {
           <img
             src="https://assets.nflxext.com/ffe/siteui/vlv3/74d734ca-0eab-4cd9-871f-bca01823d872/web/IN-en-20241021-TRIFECTA-perspective_2277eb50-9da3-4fdf-adbe-74db0e9ee2cf_medium.jpg"
             alt=""
-            className="absolute z-[-1] backdrop-blur-[50px] w-full max-w-full"
+            className="absolute h-full z-[-1] backdrop-blur-[50px] w-full max-w-full"
           />
         </div>
         <div className="w-full  flex justify-center items-center">
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="relative w-[34%] max-w-[31.25rem] rounded-md mt-[100px]  text-white flex flex-col   bg-[#000000b2] p-12"
+            className="relative w-[28.125rem] max-w-[31.25rem] rounded-md mt-[100px]  text-white flex flex-col   bg-[#000000b2] p-12"
           >
             <h1 className="text-3xl font-bold m-2">
               {isSignIn ? "Sign In" : "Sign Up"}
@@ -84,6 +84,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+      {/* <div className="w-full h-[100px] bg-black"></div> */}
     </>
   );
 };
