@@ -1,11 +1,24 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
-import { checkValidateData } from "../utils/validate";
+import { EmailValidate, PasswordValidate } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignIn, setIsSign] = useState(true);
-  const [error, setError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [PasswordError, setPasswordError] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -14,11 +27,69 @@ const Login = () => {
   };
 
   const handleButtonClick = () => {
-    const val = checkValidateData(
-      emailRef.current.value,
-      passwordRef.current.value
-    );
-    setError(val);
+    const emailerr = EmailValidate(emailRef.current.value);
+
+    if (!isSignIn) {
+      setPasswordError(PasswordValidate(passwordRef.current.value));
+    }
+    setEmailError(emailerr);
+
+    if (emailerr) return;
+    // sign In sign Up logic
+    if (!isSignIn) {
+      // sign up logic
+
+      createUserWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: nameRef.current.value,
+            photoURL:
+              "https://ui-avatars.com/api/?name=Random+User&background=random",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  name: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {});
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // if(errorMessage === "")
+          setEmailError(errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/browse");
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setEmailError(errorMessage);
+        });
+    }
   };
 
   return (
@@ -29,7 +100,7 @@ const Login = () => {
           <img
             src="https://assets.nflxext.com/ffe/siteui/vlv3/74d734ca-0eab-4cd9-871f-bca01823d872/web/IN-en-20241021-TRIFECTA-perspective_2277eb50-9da3-4fdf-adbe-74db0e9ee2cf_medium.jpg"
             alt=""
-            className="absolute h-full z-[-1] backdrop-blur-[50px] w-full max-w-full"
+            className="absolute  z-[-1] backdrop-blur-[50px] w-full max-w-full"
           />
         </div>
         <div className="w-full  flex justify-center items-center">
@@ -43,6 +114,7 @@ const Login = () => {
             {!isSignIn && (
               <input
                 type="text"
+                ref={nameRef}
                 placeholder="Full Name"
                 className="p-4 m-2 bg-[#1010129c] border-[1px] border-gray-700 rounded-md"
               />
@@ -53,18 +125,19 @@ const Login = () => {
               placeholder="Email"
               className="p-4  m-2 bg-[#1010129c] border-[1px] border-gray-700 rounded-md"
             />
+            <p className="text-red-600 px-2">{emailError}</p>
             <input
               ref={passwordRef}
               type="password"
               placeholder="Password"
               className="p-4 m-2 bg-[#1010129c] border-[1px] border-gray-700 rounded-md"
             />
-            <p className="text-red-600 px-2">{error}</p>
+            <p className="text-red-600 px-2">{PasswordError}</p>
             <button
               onClick={handleButtonClick}
               className="p-2 m-2  bg-red-600 hover:bg-red-700 transition-all hover:transition-all rounded-md"
             >
-              Sign In
+              {isSignIn ? "Sign In" : "Sign Up"}
             </button>
 
             <button className="px-2 py-1 m-2">Forgot Password?</button>
@@ -84,7 +157,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      {/* <div className="w-full h-[100px] bg-black"></div> */}
+      {/* <div className="w-full h-[10vh] bg-black"></div> */}
     </>
   );
 };
