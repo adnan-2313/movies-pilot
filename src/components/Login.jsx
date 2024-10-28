@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import Header from "./Header";
 import { EmailValidate, PasswordValidate } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
@@ -7,15 +6,16 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import Header from "./Header";
+import backgroundImage from "../assets/background-image.jpg";
+import { USER_AVATAR } from "../utils/constant";
 
 const Login = () => {
   const [isSignIn, setIsSign] = useState(true);
   const [emailError, setEmailError] = useState(null);
   const [PasswordError, setPasswordError] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const nameRef = useRef(null);
@@ -48,8 +48,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: nameRef.current.value,
-            photoURL:
-              "https://ui-avatars.com/api/?name=Random+User&background=random",
+            photoURL:USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -61,12 +60,11 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {});
         })
         .catch((error) => {
-          const errorCode = error.code;
+          // const errorCode = error.code;
           const errorMessage = error.message;
           // if(errorMessage === "")
           setEmailError(errorMessage);
@@ -81,11 +79,11 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
+
           // ...
         })
         .catch((error) => {
-          const errorCode = error.code;
+          // const errorCode = error.code;
           const errorMessage = error.message;
           setEmailError(errorMessage);
         });
@@ -98,7 +96,7 @@ const Login = () => {
         <Header />
         <div className="">
           <img
-            src="https://assets.nflxext.com/ffe/siteui/vlv3/74d734ca-0eab-4cd9-871f-bca01823d872/web/IN-en-20241021-TRIFECTA-perspective_2277eb50-9da3-4fdf-adbe-74db0e9ee2cf_medium.jpg"
+            src={backgroundImage}
             alt=""
             className="absolute  z-[-1] backdrop-blur-[50px] w-full max-w-full"
           />
