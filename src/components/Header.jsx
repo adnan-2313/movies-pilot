@@ -10,7 +10,7 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  // console.log(user.photoURL);
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -42,8 +42,8 @@ const Header = () => {
       });
   };
   return (
-    <div className="absolute px-16 py-8 flex justify-between z-10 w-full max-w-[80rem]">
-      <img src={logo} alt="logo" className="w-36" />
+    <div className="absolute px-16 py-8 flex justify-between z-[20] w-full max-w-[80rem]">
+      <img src={logo} alt="logo" className="w-44" />
       <div className="flex flex-row gap-5 items-center">
         <h1 className="">{user?.name}</h1>
         <div
@@ -57,10 +57,10 @@ const Header = () => {
                 alt={USER_AVATAR}
                 className="w-10 h-10" // optional styling
               />
-              <button className="text-sm" onMouseEnter={}>🔽</button>
+              <button className="text-sm">🔽</button>
             </div>
           )}
-          {/* Sign Out */}
+          
         </div>
       </div>
     </div>

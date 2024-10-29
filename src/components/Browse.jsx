@@ -1,22 +1,23 @@
 import Header from "./Header";
-import { options } from "../utils/constant.js";
-import { useEffect } from "react";
+import useFetchMovies from "../Hooks/useFetchMovies.js";
+import MainContainer from "./MainContainer.jsx";
+import SecondaryContainer from "./SecondaryContainer.jsx";
 const Browse = () => {
-  const getNowPlayingMovie = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
-      options
-    );
-    const json = await data.json();
-    console.log(json);
-  };
+  useFetchMovies();
 
-  useEffect(() => {
-    getNowPlayingMovie();
-  }, []);
   return (
     <div>
       <Header />
+      <MainContainer />
+      <SecondaryContainer />
+      {/* 
+      MainContainer
+        -VideoBackground
+        -VideoTitle
+      SecondaryContainer
+       - MoviesList *n
+          - cards *n  
+      */}
     </div>
   );
 };
