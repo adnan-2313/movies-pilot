@@ -7,15 +7,15 @@ const MainContainer = () => {
 
   if (!movies) return;
 
-  let num = Math.floor(Math.random() * 20);
-  const mainMovie = movies[9];
+  // let num = Math.floor(Math.random() * 20);
+  const mainMovie = movies[10];
 
   if (!mainMovie) return null;
 
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="overflow-y-hidden relative">
+    <div className="overflow-hidden relative">
       <VideoTitle title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>

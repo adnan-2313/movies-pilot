@@ -12,5 +12,18 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".no-scrollbar": {
+          /* Hides scrollbar for Chrome, Safari, and Edge */
+          "-webkit-overflow-scrolling": "touch", // Enables smooth scrolling for touch devices
+          "scrollbar-width": "none", // Firefox
+          "&::-webkit-scrollbar": {
+            display: "none", // Chrome, Safari, Edge
+          },
+        },
+      });
+    },
+  ],
 };
