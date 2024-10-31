@@ -8,7 +8,7 @@ const MainContainer = () => {
   if (!movies) return;
 
   let num = Math.floor(Math.random() * 20);
-  const mainMovie = movies[9];
+  const mainMovie = movies[19];
 
   if (!mainMovie) return null;
 
