@@ -1,4 +1,3 @@
-import { BiSearch } from "react-icons/bi";
 import { lang } from "../utils/languageConstant";
 import { useSelector } from "react-redux";
 
@@ -14,9 +13,9 @@ const SearchBar = () => {
         <input
           type="text"
           placeholder={lang[langKey].placeholder}
-          className="w-[330px] rounded-l-md p-[15px]"
+          className="w-[330px] outline-none  rounded-l-md p-[15px]"
         />
-        <button className="p-[19px]  rounded-r-md  bg-red-700 text-white rounded-sm">
+        <button className="p-[19px] w-[90px] rounded-r-md  bg-[#d62222] text-white rounded-sm">
           {lang[langKey].search}
         </button>
       </form>

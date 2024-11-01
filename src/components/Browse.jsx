@@ -12,7 +12,7 @@ const Browse = () => {
   usePopularMovies();
 
   return (
-    <div>
+    <div className="font-DMSANS">
       <Header />
       {showPilotSearch ? (
         <Search />
