@@ -1,11 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { options } from "../utils/constant";
 import { useEffect } from "react";
 
 const useFetchMovies = () => {
   const dispatch = useDispatch();
-
+  const nowPlayingMovies = useSelector(
+    (store) => store.movies.nowPlayingMovies
+  );
   const getNowPlayingMovie = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/now_playing?page=1",
@@ -17,7 +19,7 @@ const useFetchMovies = () => {
   };
 
   useEffect(() => {
-    getNowPlayingMovie();
+    !nowPlayingMovies && getNowPlayingMovie();
   }, []);
 };
 
