@@ -5,18 +5,16 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { SUPPORTED_LANGUAGES, USER_AVATAR } from "../utils/constant";
+import { SUPPORTED_LANGUAGES } from "../utils/constant";
 import { togglePilotSearchView } from "../utils/pilotSlice";
-import {  BiLogOut, BiSearch } from "react-icons/bi";
+import { BiLogOut, BiSearch } from "react-icons/bi";
 import { changeLanguage } from "../utils/appConfigSlice";
-import { CiHome } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const showPilotSearch = useSelector((store) => store.pilot.showPilotSearch);
-  console.log(showPilotSearch);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -88,11 +86,14 @@ const Header = () => {
                 className="py-2 px-4 text-white bg-[#d62222] rounded-md text-3xl font-bold"
                 onClick={handleSearch}
               >
-                {showPilotSearch ? <FaHome/> : <BiSearch />}
+                {showPilotSearch ? <FaHome /> : <BiSearch />}
               </button>
-             
-              <button onClick={handlSignOut} className="text-2xl bg-[#d62222] py-3 rounded-md text-center px-4  text-white">
-                <BiLogOut/>
+
+              <button
+                onClick={handlSignOut}
+                className="text-2xl bg-[#d62222] py-3 rounded-md text-center px-4  text-white"
+              >
+                <BiLogOut />
               </button>
             </div>
           )}

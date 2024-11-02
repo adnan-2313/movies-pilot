@@ -5,8 +5,7 @@ export const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDcxZGU4ZTJhOWFlOTAzNzQ1NWYzNGVlOWVjMDE0MyIsIm5iZiI6MTczMDEzNDc3NS4wMTk4MzcsInN1YiI6IjY3MWZjMGJiMzRjMGZhYmQ2ODFkMmJiNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fb8smrUrZgC3dsxRWDOYdYCLnrzknp06G12onYCGwFM",
+    Authorization: `Bearer ${import.meta.env.VITE_TMDB_API}`,
   },
 };
 
@@ -30,3 +29,4 @@ export const SUPPORTED_LANGUAGES = [
     name: "arabic",
   },
 ];
+export const GEMINI_API = import.meta.env.VITE_GEMINI_API;

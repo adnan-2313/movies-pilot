@@ -11,3 +11,12 @@
 /* .no-scrollbar {
   scrollbar-width: none;
 } */
+::-webkit-scrollbar{
+  background-color: rgba(0, 0, 0, 0.8);
+  width:10px;
+}
+
+::-webkit-scrollbar-button{
+  width: 10px;
+  color: wheat;
+}

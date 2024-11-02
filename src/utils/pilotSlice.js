@@ -4,13 +4,20 @@ const pilotSlice = createSlice({
   name: "pilot",
   initialState: {
     showPilotSearch: false,
+    movieName: [],
+    movieResults: null,
   },
   reducers: {
-    togglePilotSearchView: (state, action) => {
+    togglePilotSearchView: (state) => {
       state.showPilotSearch = !state.showPilotSearch;
+    },
+    addSearchMovies: (state, action) => {
+      const { movieName, movieResults } = action.payload;
+      state.movieName = movieName;
+      state.movieResults = movieResults;
     },
   },
 });
 
-export const { togglePilotSearchView } = pilotSlice.actions;
+export const { togglePilotSearchView, addSearchMovies } = pilotSlice.actions;
 export default pilotSlice.reducer;

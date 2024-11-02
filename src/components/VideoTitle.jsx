@@ -2,7 +2,7 @@ import { IoIosPlay } from "react-icons/io";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="overflow-hidden w-screen aspect-video pt-[15%] px-6 md:px-24 absolute text-white bg-gradient-to-r from-black font-DMSANS">
+    <div className="overflow-hidden w-screen aspect-video pt-[20%] px-6 md:px-24 absolute text-white bg-gradient-to-r from-black font-DMSANS">
       <h1 className="text-6xl font-playwrite leading-snug font-bold">{title}</h1>
       <p className="py-6 text-[1.2rem]  w-[40%] leading-tight ">{overview}</p>
       <div className="flex items-center gap-2">
