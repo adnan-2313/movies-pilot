@@ -14,7 +14,7 @@ import { CgClose } from "react-icons/cg";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(true);
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const showPilotSearch = useSelector((store) => store.pilot.showPilotSearch);
@@ -58,57 +58,126 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="absolute px-16 max-sm:px-8 py-8 flex justify-between items-center z-[20] w-full max-w-[80rem] sm:">
-      <img src={logo} alt="logo" className="w-[200px] max-sm:w-[150px]" />
-      <div
-        className="sm:hidden text-3xl text-red-500"
-        onClick={() => setMenu(!menu)}
-      >
-        {menu ? <FaBars /> : <CgClose />}
-      </div>
-      <div className="flex flex-row gap-5 items-center max-sm:hidden">
-        {/* <h1 className="">{user?.name}</h1> */}
-        <div className="cursor-pointer font-semibold text-2xl text-red-500">
-          {user?.photoURL && (
-            <div className="flex flex-row gap-3 items-center">
-              {showPilotSearch && (
-                <select
-                  className="border-none outline-none w-[100px] text-center h-[40px] text-sm rounded-lg bg-black bg-opacity-80"
-                  name=""
-                  id=""
-                  onChange={handleLanguageChange}
+    <>
+      <div className="absolute px-16 max-sm:px-8 py-8 flex justify-between items-center z-[20] w-full max-w-[80rem] sm:">
+        <img src={logo} alt="logo" className="w-[200px] max-sm:w-[150px]" />
+        <div
+          className="sm:hidden text-3xl text-red-500"
+          onClick={() => setMenu(true)}
+        >
+          <FaBars /> : <CgClose />
+        </div>
+        <div className="flex flex-row gap-5 items-center max-sm:hidden">
+          {/* <h1 className="">{user?.name}</h1> */}
+          <div className="cursor-pointer font-semibold text-2xl text-red-500">
+            {user?.photoURL && (
+              <div className="flex flex-row gap-3 items-center">
+                {showPilotSearch && (
+                  <select
+                    className="border-none outline-none w-[100px] text-center h-[40px] text-sm rounded-lg bg-black bg-opacity-80"
+                    name=""
+                    id=""
+                    onChange={handleLanguageChange}
+                  >
+                    {SUPPORTED_LANGUAGES.map((lang) => {
+                      return (
+                        <option
+                          key={lang.identifier}
+                          className="border-none outline-none bg-black bg-opacity-70 rounded-md w-[100px] text-sm"
+                          value={lang.identifier}
+                        >
+                          {lang.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
+                <button
+                  className="py-2 px-4 text-white bg-[#d62222] rounded-md text-3xl font-bold"
+                  onClick={handleSearch}
                 >
-                  {SUPPORTED_LANGUAGES.map((lang) => {
-                    return (
-                      <option
-                        key={lang.identifier}
-                        className="border-none outline-none bg-black bg-opacity-70 rounded-md w-[100px] text-sm"
-                        value={lang.identifier}
-                      >
-                        {lang.name}
-                      </option>
-                    );
-                  })}
-                </select>
-              )}
-              <button
-                className="py-2 px-4 text-white bg-[#d62222] rounded-md text-3xl font-bold"
-                onClick={handleSearch}
-              >
-                {showPilotSearch ? <FaHome /> : <BiSearch />}
-              </button>
+                  {showPilotSearch ? <FaHome /> : <BiSearch />}
+                </button>
 
-              <button
-                onClick={handlSignOut}
-                className="text-2xl bg-[#d62222] py-3 rounded-md text-center px-4  text-white"
-              >
-                <BiLogOut />
-              </button>
-            </div>
-          )}
+                <button
+                  onClick={handlSignOut}
+                  className="text-2xl bg-[#d62222] py-3 rounded-md text-center px-4  text-white"
+                >
+                  <BiLogOut />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      {/* {menu && (
+        <div className="bg-black z-[100] absolute flex  items-center flex-col  w-screen h-full">
+          <div className="flex flex-row justify-center items-baseline gap-20">
+            <img
+              src={logo}
+              alt="logo"
+              className="w-[200px]  max-sm:w-[150px]"
+            />
+            <div
+              className=" text-5xl text-red-500"
+              onClick={() => setMenu(false)}
+            >
+              <CgClose />
+            </div>
+          </div>
+          <div className="cursor-pointer mt-32 font-semibold text-2xl text-red-500">
+            {user?.photoURL && (
+              <div className="flex flex-col gap-3 items-center">
+                {showPilotSearch && (
+                  <select
+                    className="border-none outline-none w-[300px] text-center h-[40px] text-xl  rounded-lg bg-[#d62222] text-white"
+                    name=""
+                    id=""
+                    onChange={handleLanguageChange}
+                  >
+                    {SUPPORTED_LANGUAGES.map((lang) => {
+                      return (
+                        <option
+                          key={lang.identifier}
+                          className="border-none outline-none bg-[#d62222] rounded-md w-[100px] text-sm"
+                          value={lang.identifier}
+                        >
+                          {lang.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
+                <button
+                  className="py-2 px-8 flex items-center gap-3 text-white bg-[#d62222] rounded-md text-2xl font-bold"
+                  onClick={handleSearch}
+                >
+                  {showPilotSearch ? (
+                    <>
+                      <FaHome className="text-4xl" />
+                      Home
+                    </>
+                  ) : (
+                    <>
+                      <BiSearch className="text-4xl" />
+                      Search
+                    </>
+                  )}
+                </button>
+
+                <button
+                  onClick={handlSignOut}
+                  className="text-xl gap-3 px-8 flex items-center bg-[#d62222] py-2 rounded-md text-center  text-white"
+                >
+                  <BiLogOut className="text-4xl" />
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )} */}
+    </>
   );
 };
 
