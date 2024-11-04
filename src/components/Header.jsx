@@ -3,15 +3,18 @@ import logo from "../assets/Logo.png";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { addUser, removeUser } from "../utils/userSlice";
+import { useEffect, useState } from "react";
+import { addUser, removeUser } from "../store/userSlice.js";
 import { SUPPORTED_LANGUAGES } from "../utils/constant";
-import { togglePilotSearchView } from "../utils/pilotSlice";
-import { BiLogOut, BiSearch } from "react-icons/bi";
-import { changeLanguage } from "../utils/appConfigSlice";
-import { FaHome } from "react-icons/fa";
+import { togglePilotSearchView } from "../store/pilotSlice.js";
+import { BiCross, BiLogOut, BiSearch } from "react-icons/bi";
+import { changeLanguage } from "../store/appConfigSlice";
+import { FaBars, FaCross, FaHome } from "react-icons/fa";
+import { CgClose } from "react-icons/cg";
+
 const Header = () => {
   const navigate = useNavigate();
+  const [menu, setMenu] = useState(false);
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const showPilotSearch = useSelector((store) => store.pilot.showPilotSearch);
@@ -55,9 +58,15 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="absolute px-16 py-8 flex justify-between items-center z-[20] w-full max-w-[80rem]">
-      <img src={logo} alt="logo" className="w-[200px]" />
-      <div className="flex flex-row gap-5 items-center">
+    <div className="absolute px-16 max-sm:px-8 py-8 flex justify-between items-center z-[20] w-full max-w-[80rem] sm:">
+      <img src={logo} alt="logo" className="w-[200px] max-sm:w-[150px]" />
+      <div
+        className="sm:hidden text-3xl text-red-500"
+        onClick={() => setMenu(!menu)}
+      >
+        {menu ? <FaBars /> : <CgClose />}
+      </div>
+      <div className="flex flex-row gap-5 items-center max-sm:hidden">
         {/* <h1 className="">{user?.name}</h1> */}
         <div className="cursor-pointer font-semibold text-2xl text-red-500">
           {user?.photoURL && (

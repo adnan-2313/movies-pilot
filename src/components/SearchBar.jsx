@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GEMINI_API, options } from "../utils/constant";
 // import API_OPTIONS from "../utils/API_OPTION";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { addSearchMovies } from "../utils/pilotSlice";
+import { addSearchMovies } from "../store/pilotSlice";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -50,20 +50,20 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-center pt-[100px] ">
+    <div className="flex items-center justify-center pt-[100px] z-10">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-[33%]   justify-center py-3 rounded-md   flex "
+        className="w-[33%] max-sm:text-[0.8rem]  justify-center py-3 rounded-md max-md:w-full max-sm:w-[80%]   flex "
       >
         <input
           type="text"
           ref={searchText}
           placeholder={lang[langKey].placeholder}
-          className="w-[330px] outline-none  rounded-l-md p-[15px]"
+          className="w-[330px] outline-none  rounded-l-md p-[15px] max-sm:py-[10px]"
         />
         <button
           onClick={handleSearch}
-          className="p-[19px] w-[90px] rounded-r-md  bg-[#d62222] text-white rounded-sm"
+          className="p-[19px] max-sm:py-[13px] w-[90px] rounded-r-md  bg-[#d62222] text-white rounded-sm"
         >
           {lang[langKey].search}
         </button>
