@@ -50,7 +50,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-center pt-[100px] z-10">
+    <div className="flex items-center justify-center max-sm:mt-8 pt-[100px] z-10">
       <form
         onSubmit={(e) => e.preventDefault()}
         className="w-[33%] max-sm:text-[0.8rem]  justify-center py-3 rounded-md max-md:w-full max-sm:w-[80%]   flex "
