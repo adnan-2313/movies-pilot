@@ -10,6 +10,9 @@ export default {
         playwrite: ["Playwrite AR", " cursive"],
         DMSANS: ["DM Sans", "sans-serif"],
       },
+      animation: {
+        "spin-slow": "spin 1.1s linear infinite",
+      },
     },
   },
   plugins: [

@@ -20,10 +20,15 @@ const Browse = () => {
   const loader = useSelector((store) => store.movies.nowPlayingMovies);
   if (!loader)
     return (
-      <div className="flex items-center justify-center h-screen bg-black">
-        <div className="relative w-16 h-16 border-4 border-red-500 border-opacity-50 rounded-full animate-spin">
-          <div className="absolute top-1/2 left-1/2 w-8 h-8 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
-        </div>
+      <div className="nfLoader flex flex-col text-white gap-5 text-xl justify-center  bg-black items-center fixed inset-0">
+        <div
+          className="w-16 h-16 bg-center bg-no-repeat bg-contain animate-spin-slow"
+          style={{
+            backgroundImage:
+              "url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png)",
+          }}
+        ></div>
+        Loading....
       </div>
     );
 
