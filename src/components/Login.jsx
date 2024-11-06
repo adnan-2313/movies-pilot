@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { EmailValidate, PasswordValidate } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
@@ -19,8 +20,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const emailRef = useRef("admin12@gmail.com");
+  const passwordRef = useRef("Adnan@5426");
 
   const toggleSignForm = () => {
     setIsSign(!isSignIn);
@@ -88,6 +89,14 @@ const Login = () => {
         });
     }
   };
+  const handlePasswordReset = async () => {
+    try {
+      await sendPasswordResetEmail(auth, emailRef.current.value);
+      alert("Password reset email sent!");
+    } catch (error) {
+      setEmailError("Error sending password reset email");
+    }
+  };
 
   return (
     <>
@@ -120,6 +129,7 @@ const Login = () => {
             <input
               ref={emailRef}
               type="email"
+              defaultValue={"admin12@gmail.com"}
               placeholder="Email"
               className="p-4  m-2 bg-[#1010129c] border-[1px] border-gray-700 rounded-md"
             />
@@ -127,6 +137,7 @@ const Login = () => {
             <input
               ref={passwordRef}
               type="password"
+              defaultValue={"Adnan@5426"}
               placeholder="Password"
               className="p-4 m-2 bg-[#1010129c] border-[1px] border-gray-700 rounded-md"
             />
@@ -138,7 +149,9 @@ const Login = () => {
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
 
-            <button className="px-2 py-1 m-2">Forgot Password?</button>
+            <button onClick={handlePasswordReset} className="px-2 py-1 m-2">
+              Forgot Password?
+            </button>
             <h1 className="mx-2 my-1 px-1">
               {/* <input type="checkbox" className="transition-all" /> Remember me */}
             </h1>
