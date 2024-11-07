@@ -20,8 +20,9 @@ REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
 REACT_APP_TMDB_API_KEY=your_tmdb_api_key
 REACT_APP_OPENAI_API_KEY=your_openai_api_key
 
-2.Start the project
-    npm start
+2. Start the project
+   ```
+   npm start
 
 ## Tech Stack
 React & Redux
