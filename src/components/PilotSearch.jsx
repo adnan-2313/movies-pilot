@@ -3,7 +3,7 @@ import MovieSuggestion from "./MovieSuggestion";
 import backgroundImage from "../assets/background-image.jpg"
 const Search = () => {
   return (
-    <div className="fixed w-full">
+    <div className="fixed w-full grid-bg">
       
       <img
         src={backgroundImage}
@@ -11,7 +11,7 @@ const Search = () => {
         className="z-[-1] absolute object-cover h-screen backdrop-blur-[50px] w-full max-w-full"
       />
       <div
-        className="z-[-1] absolute object-cover h-screen bg-opacity-40  bg-black w-full max-w-full"
+        className="z-[-1] absolute object-cover h-screen  w-full max-w-full"
       />
       <SearchBar />
       <MovieSuggestion/>

@@ -50,20 +50,25 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-center max-sm:mt-8 pt-[100px] z-10">
+    <div className="flex flex-col items-center mx-auto justify-center max-sm:mt-8 pt-[100px] z-10 max-w-7xl">
+      <h1 className="font-extrabold text-4xl sm:text-6xl text-transparent bg-clip-text font-montserrat netflix-gradient leading-tight tracking-wide uppercase">
+        Discover <span className="text-white">Top</span> Movies
+      </h1>
+
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-[33%] max-sm:text-[0.8rem]  justify-center py-3 rounded-md max-md:w-full max-sm:w-[80%]   flex "
+        className="w-full  gap-2 max-sm:text-[0.8rem] mt-10   
+        rounded-md px-20   flex "
       >
         <input
           type="text"
           ref={searchText}
           placeholder={lang[langKey].placeholder}
-          className="w-[330px] outline-none  rounded-l-md p-[15px] max-sm:py-[10px]"
+          className="w-full outline-none rounded-md  p-[15px] max-sm:py-[10px]"
         />
         <button
           onClick={handleSearch}
-          className="p-[19px] max-sm:py-[13px] w-[90px] rounded-r-md  bg-[#d62222] text-white rounded-sm"
+          className="p-[19px] max-sm:py-[13px] w-[120px]   bg-[#d62222] text-white rounded-md"
         >
           {lang[langKey].search}
         </button>
