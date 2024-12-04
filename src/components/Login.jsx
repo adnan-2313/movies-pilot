@@ -100,20 +100,20 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex ">
         <Header />
-        <div className="fixed w-full h-full">
+        <div className="fixed w-full h-full ">
           <img
             src={backgroundImage}
             alt=""
             className=" z-[-2] absolute object-cover h-screen backdrop-blur-[50px] w-full "
           />
-          <div className=" z-[-2] absolute object-cover h-screen bg-opacity-45  bg-black w-full max-w-full" />
+          <div className=" z-[-2] absolute object-cover h-screen sm:bg-opacity-45  bg-black w-full max-w-full" />
         </div>
-        <div className="w-full  flex justify-center items-center border-2 max-sm:px-2 ">
+        <div className="w-full  flex   justify-center items-center   ">
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="relative   z-[30] w-[28.125rem]  max-w-[31.25rem] rounded-md mt-[100px]  text-white flex flex-col   bg-[#000000b2] p-12 max-sm:py-8 max-sm:px-8"
+            className="relative   z-[30] sm:w-[28.125rem] w-full  max-w-[31.25rem] rounded-md mt-[100px]  text-white flex flex-col   bg-[#000000b2] p-12 max-sm:py-8 max-sm:px-2"
           >
             <h1 className="text-3xl font-bold m-2">
               {isSignIn ? "Sign In" : "Sign Up"}
@@ -144,7 +144,7 @@ const Login = () => {
             <p className="text-red-600 px-2">{PasswordError}</p>
             <button
               onClick={handleButtonClick}
-              className="p-2 m-2  bg-red-600 hover:bg-red-700 transition-all hover:transition-all rounded-md"
+              className="p-2 m-2  bg-[#e50914] hover:bg-red-700 transition-all hover:transition-all rounded-md"
             >
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>

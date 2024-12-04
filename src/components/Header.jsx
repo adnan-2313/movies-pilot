@@ -61,11 +61,11 @@ const Header = ({ Flex }) => {
     <>
       <div
         className={`absolute px-16 max-md:px-8 max-sm:p-4   py-8 flex ${
-          Flex === "true" ? "max-sm:flex-row" : "max-sm:flex-col"
+          Flex === "true" ? "max-sm:flex-row" : "max-sm:flex-col "
         } max-sm:gap-5 
-      justify-between mx-auto items-center z-[20] w-full max-w-[80rem] sm:`}
+      justify-between mx-auto items-center z-[20] w-full max-w-[80rem] `}
       >
-        <img src={logo} alt="logo" className="w-[200px] max-sm:w-[150px]" />
+        <img src={logo} alt="logo" className="w-[200px] " />
 
         <div className="flex flex-row  gap-5 items-center max-sm:w-full max-sm:justify-end ">
           {/* <h1 className="">{user?.name}</h1> */}
