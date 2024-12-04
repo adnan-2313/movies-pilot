@@ -9,9 +9,10 @@ import {
 import { auth } from "../../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../store/userSlice";
-import Header from "../Header/Header";
+import Header from "../Header & Footer/Header";
 import backgroundImage from "../../../public/background-image.jpg";
 import { USER_AVATAR } from "../../utils/constant";
+import Footer from "../Header & Footer/Footer";
 
 const Login = () => {
   const [isSignIn, setIsSign] = useState(true);
@@ -39,7 +40,6 @@ const Login = () => {
     // sign In sign Up logic
     if (!isSignIn) {
       // sign up logic
-
       createUserWithEmailAndPassword(
         auth,
         emailRef.current.value,
@@ -89,6 +89,7 @@ const Login = () => {
         });
     }
   };
+
   const handlePasswordReset = async () => {
     try {
       await sendPasswordResetEmail(auth, emailRef.current.value);
@@ -100,20 +101,20 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex ">
+      <div className="flex flex-col  relative">
         <Header />
-        <div className="fixed w-full h-full ">
+        <div className="fixed w-full h-full">
           <img
             src={backgroundImage}
             alt=""
-            className=" z-[-2] absolute object-cover h-screen backdrop-blur-[50px] w-full "
+            className="absolute z-[-2] object-cover h-screen backdrop-blur-[50px] w-full"
           />
-          <div className=" z-[-2] absolute object-cover h-screen sm:bg-opacity-45  bg-black w-full max-w-full" />
+          <div className="absolute z-[-2] object-cover h-screen bg-black sm:bg-opacity-45 w-full max-w-full" />
         </div>
-        <div className="w-full  flex   justify-center items-center   ">
+        <div className="w-full flex justify-center items-center">
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="relative   z-[30] sm:w-[28.125rem] w-full  max-w-[31.25rem] rounded-md mt-[100px]  text-white flex flex-col   bg-[#000000b2] p-12 max-sm:py-8 max-sm:px-2"
+            className="relative z-[30] mb-5 sm:w-[28.125rem] w-full max-w-[31.25rem] rounded-md mt-[100px] text-white flex flex-col bg-[#000000b2] p-12 max-sm:py-8 max-sm:px-2"
           >
             <h1 className="text-3xl font-bold m-2">
               {isSignIn ? "Sign In" : "Sign Up"}
@@ -144,7 +145,7 @@ const Login = () => {
             <p className="text-red-600 px-2">{PasswordError}</p>
             <button
               onClick={handleButtonClick}
-              className="p-2 m-2  bg-[#e50914] hover:bg-red-700 transition-all hover:transition-all rounded-md"
+              className="p-2 m-2 bg-[#e50914] hover:bg-red-700 transition-all hover:transition-all rounded-md"
             >
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
@@ -152,23 +153,20 @@ const Login = () => {
             <button onClick={handlePasswordReset} className="px-2 py-1 m-2">
               Forgot Password?
             </button>
-            <h1 className="mx-2 my-1 px-1">
-              {/* <input type="checkbox" className="transition-all" /> Remember me */}
-            </h1>
             <h1
               className="mx-2 px-1 cursor-pointer transition-all duration-1000"
               onClick={toggleSignForm}
             >
               {isSignIn ? (
-                <span>New Netflix ? Sign Up</span>
+                <span>New Netflix? Sign Up</span>
               ) : (
-                <span>Already Registered ? Sign In </span>
+                <span>Already Registered? Sign In </span>
               )}
             </h1>
           </form>
         </div>
+      <Footer />
       </div>
-      {/* <div className="w-full h-[30vh] -mt-10 z-[-30] bg-black"></div> */}
     </>
   );
 };

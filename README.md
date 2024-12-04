@@ -12,21 +12,26 @@ A React-based movie discovery app that provides personalized recommendations, mo
 ## Setup
 
 1. Clone the repository:
+
    ```bash
    git clone git@github.com:adnan-2313/movies-pilot.git
    cd movies-pilot
    npm install
-REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
-REACT_APP_TMDB_API_KEY=your_tmdb_api_key
-REACT_APP_OPENAI_API_KEY=your_openai_api_key
+   REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+   REACT_APP_TMDB_API_KEY=your_tmdb_api_key
+   REACT_APP_OPENAI_API_KEY=your_openai_api_key
+
+   ```
 
 2. Start the project
    ```
    npm start
+   ```
 
 ## Tech Stack
-React & Redux
-Firebase (Auth)
-TMDB API (Movies)
-OpenAI GPT (Suggestions)
-TailwindCSS
+
+- React & Redux
+- TailwindCSS (UI)
+- Firebase (Auth)
+- TMDB API (Movies)
+- OpenAI GPT (Suggestions)

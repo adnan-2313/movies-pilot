@@ -1,4 +1,4 @@
-import Header from "../Header/Header";
+import Header from "../Header & Footer/Header";
 import useFetchMovies from "../../Hooks/useFetchMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
@@ -7,6 +7,7 @@ import Search from "../Pilot Search/PilotSearch";
 import { useSelector } from "react-redux";
 import useTopRatedMovies from "../../Hooks/useTopRatedMovies";
 import useUpcomingMovies from "../../Hooks/useUpcomingMovies";
+import Footer from "../Header & Footer/Footer";
 
 const Browse = () => {
   const showPilotSearch = useSelector((store) => store.pilot.showPilotSearch);
@@ -32,17 +33,20 @@ const Browse = () => {
     );
 
   return (
-    <div className="font-DMSANS">
-      <Header Flex="true" />
-      {showPilotSearch ? (
-        <Search />
-      ) : (
-        <>
-          <MainContainer />
-          <SecondaryContainer />
-        </>
-      )}
-    </div>
+    <>
+      <div className="font-DMSANS">
+        <Header Flex="true" />
+        {showPilotSearch ? (
+          <Search />
+        ) : (
+          <>
+            <MainContainer />
+            <SecondaryContainer />
+          </>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 };
 
