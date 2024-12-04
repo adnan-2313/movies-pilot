@@ -1,17 +1,17 @@
 import { useRef, useState } from "react";
-import { EmailValidate, PasswordValidate } from "../utils/validate";
+import { EmailValidate, PasswordValidate } from "../../utils/validate";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "../store/userSlice";
-import Header from "./Header";
-import backgroundImage from "../assets/background-image.jpg";
-import { USER_AVATAR } from "../utils/constant";
+import { addUser } from "../../store/userSlice";
+import Header from "../Header/Header";
+import backgroundImage from "../../../public/background-image.jpg";
+import { USER_AVATAR } from "../../utils/constant";
 
 const Login = () => {
   const [isSignIn, setIsSign] = useState(true);

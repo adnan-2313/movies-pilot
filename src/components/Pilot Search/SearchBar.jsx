@@ -1,10 +1,10 @@
 import { useRef } from "react";
-import { lang } from "../utils/languageConstant";
+import { lang } from "../../utils/languageConstant";
 import { useDispatch, useSelector } from "react-redux";
-import { GEMINI_API, options } from "../utils/constant";
+import { GEMINI_API, options } from "../../utils/constant";
 // import API_OPTIONS from "../utils/API_OPTION";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { addSearchMovies } from "../store/pilotSlice";
+import { addSearchMovies } from "../../store/pilotSlice";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -50,15 +50,20 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mx-auto justify-center max-sm:mt-8 pt-[100px] z-10 max-w-7xl">
-      <h1 className="font-extrabold text-4xl sm:text-6xl text-transparent bg-clip-text font-montserrat netflix-gradient leading-tight tracking-wide uppercase">
-        Discover <span className="text-white">Top</span> Movies
-      </h1>
+    <div className="flex flex-col items-center mx-auto  justify-center max-sm:mt-8 pt-16 sm:pt-[100px] z-10 sm:max-w-7xl">
+      <div className="w-full flex text-center justify-center  ">
+        <h1
+          className="font-extrabold text-4xl md:text-6xl text-transparent bg-clip-text 
+      font-montserrat netflix-gradient sm:leading-tight sm:tracking-wide uppercase "
+        >
+          Discover Top Movies
+        </h1>
+      </div>
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-full  gap-2 max-sm:text-[0.8rem] mt-10   
-        rounded-md px-20   flex "
+        className="w-full  gap-2 max-sm:text-[0.8rem] mt-6 sm:mt-10   
+        rounded-md px-4 sm:px-20   flex "
       >
         <input
           type="text"

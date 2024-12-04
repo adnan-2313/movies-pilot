@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/Logo.png";
-import { auth } from "../utils/firebase";
+import logo from "../../../public/Logo.png";
+import { auth } from "../../utils/firebase.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { addUser, removeUser } from "../store/userSlice.js";
-import { SUPPORTED_LANGUAGES } from "../utils/constant";
-import { togglePilotSearchView } from "../store/pilotSlice.js";
+import { addUser, removeUser } from "../../store/userSlice.js";
+import { SUPPORTED_LANGUAGES } from "../../utils/constant.js";
+import { togglePilotSearchView } from "../../store/pilotSlice.js";
 import { BiLogOut, BiSearch } from "react-icons/bi";
-import { changeLanguage } from "../store/appConfigSlice";
+import { changeLanguage } from "../../store/appConfigSlice.js";
 import { FaHome } from "react-icons/fa";
 import {} from "react-icons/cg";
 
@@ -65,7 +65,7 @@ const Header = ({ Flex }) => {
         } max-sm:gap-5 
       justify-between mx-auto items-center z-[20] w-full max-w-[80rem] `}
       >
-        <img src={logo} alt="logo" className="w-[200px] " />
+        <img src={logo} alt="logo" className="w-[150px] sm:w-[200px]  " />
 
         <div className="flex flex-row  gap-5 items-center max-sm:w-full max-sm:justify-end ">
           {/* <h1 className="">{user?.name}</h1> */}
